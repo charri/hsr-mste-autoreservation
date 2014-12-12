@@ -1,4 +1,6 @@
-﻿using System.Windows;
+﻿using System.Globalization;
+using System.Threading;
+using System.Windows;
 
 namespace AutoReservation.Ui
 {
@@ -6,7 +8,11 @@ namespace AutoReservation.Ui
     {
         public MainWindow()
         {
+            Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("de-CH");
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("de-CH");
+
             InitializeComponent();
+            
         }
     }
 }

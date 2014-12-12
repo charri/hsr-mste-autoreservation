@@ -17,19 +17,31 @@ namespace AutoReservation.Ui.Testing
         [TestMethod]
         public void AutosLoadTest()
         {
-            Assert.Inconclusive("Test wurde noch nicht implementiert!");
+            var viewModel = new AutoViewModel();
+            var cmd = viewModel.LoadCommand;
+            Assert.AreEqual(true, cmd.CanExecute(null));
+            cmd.Execute(null);
+            Assert.IsTrue(viewModel.Autos.Count > 0);
         }
 
         [TestMethod]
         public void KundenLoadTest()
         {
-            Assert.Inconclusive("Test wurde noch nicht implementiert!");
+            var viewModel = new KundeViewModel();
+            var cmd = viewModel.LoadCommand;
+            Assert.AreEqual(true, cmd.CanExecute(null));
+            cmd.Execute(null);
+            Assert.IsTrue(viewModel.Kunden.Count > 0);
         }
 
         [TestMethod]
         public void ReservationenLoadTest()
         {
-            Assert.Inconclusive("Test wurde noch nicht implementiert!");
+            var viewModel = new ReservationenViewModel();
+            var cmd = viewModel.LoadCommand;
+            Assert.AreEqual(true, cmd.CanExecute(null));
+            cmd.Execute(null);
+            Assert.IsTrue(viewModel.Reservations.Count > 0);
         }
     }
 }
