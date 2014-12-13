@@ -27,14 +27,30 @@ namespace AutoReservation.Ui.ViewModels
             }
         }
 
-        private ReservationDto selectedRes;
+        public IEnumerable<KundeDto> Kunden
+        {
+            get
+            {
+                return Service.FindAllKunden();
+            }
+        }
+
+        public IEnumerable<AutoDto> Autos
+        {
+            get
+            {
+                return Service.FindAllAutos();
+            }
+        }
+
+        private ReservationDto _selectedRes;
         public ReservationDto SelectedReservation
         {
-            get { return selectedRes; }
+            get { return _selectedRes; }
             set
             {
-                if (selectedRes == value) return;
-                selectedRes = value;
+                if (_selectedRes == value) return;
+                _selectedRes = value;
                 RaisePropertyChanged();
             }
         }
@@ -107,7 +123,7 @@ namespace AutoReservation.Ui.ViewModels
                 else
                 {
                     var original = _reservationsOriginal.FirstOrDefault(t => t.ReservationNr == res.ReservationNr);
-                    Service.UpdateReservation(res, original);
+                    Service.UpdateReservation(original, res);
                 }
             }
             Load();

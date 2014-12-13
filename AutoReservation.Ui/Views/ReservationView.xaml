@@ -85,24 +85,36 @@
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
 
-            <Label Grid.Row="1">Typ</Label>
-            <Label Grid.Row="2">Marke</Label>
-            <Label Grid.Row="3">Tagestarif</Label>
-            <Label Grid.Row="4">Basistarif</Label>
+            <Label Grid.Row="1">ReservationNr</Label>
+            <Label Grid.Row="2">Von</Label>
+            <Label Grid.Row="3">Bis</Label>
+            <Label Grid.Row="4">Kunde</Label>
+            <Label Grid.Row="5">Auto</Label>
 
             <Label Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" 
                    FontSize="16" FontWeight="UltraBold" FontStyle="Italic">
-                Auto Editieren
+                Reservation Editieren
             </Label>
-            <!--<ComboBox Grid.Column="1" Grid.Row="1" 
-                      ItemsSource="{Binding Source={StaticResource }}"
-                      SelectedIndex="{Binding Reservations.AutoKlasse, Converter={StaticResource AutoKlasseEnumConverter}}"  />-->
-            <!--<TextBox Grid.Column="1" Grid.Row="2" Text="{Binding SelectedReservation.Marke}" />
-            <TextBox Grid.Column="1" Grid.Row="3" Text="{Binding SelectedReservation.Tagestarif}" />
-            <TextBox Grid.Column="1" Grid.Row="4" Text="{Binding SelectedReservation.Basistarif}" Visibility="{Binding SelectedAuto.AutoKlasse, Converter={StaticResource BasistarifVisibilityConverter}, Mode=TwoWay}" />-->
+
+            <Label Grid.Row="1" Grid.Column="1" Content="{Binding SelectedReservation.ReservationNr}" />
+            <DatePicker Grid.Row="2" Grid.Column="1" SelectedDate="{Binding SelectedReservation.Von}" />
+            <DatePicker Grid.Row="3" Grid.Column="1" SelectedDate="{Binding SelectedReservation.Bis}" />
+
+            <ComboBox Grid.Column="1" Grid.Row="4" 
+                      ItemsSource="{Binding Kunden}"
+                      DisplayMemberPath="Nachname"
+                      Text="{Binding SelectedReservation.Kunde.Nachname}"
+                      SelectedItem="{Binding SelectedReservation.Kunde}" />
+
+            <ComboBox Grid.Column="1" Grid.Row="5" 
+                      ItemsSource="{Binding Autos}"
+                      DisplayMemberPath="Marke"
+                      Text="{Binding SelectedReservation.Auto.Marke}"
+                      SelectedItem="{Binding SelectedReservation.Auto}"  />
         </Grid>
     </Grid>
 </UserControl>
